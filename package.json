@@ -8,9 +8,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "type-check": "nuxt typecheck"
+    "typecheck": "nuxt typecheck"
   },
   "dependencies": {
     "@nuxt/fonts": "^0.12.1",
