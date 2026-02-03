@@ -1,6 +1,5 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { computed } from 'vue'
 import Tile from '~/components/game/Tile.vue'
 
 describe('Tile Component', () => {
