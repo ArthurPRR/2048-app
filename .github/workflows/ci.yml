@@ -13,8 +13,16 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
+
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: |
+          npm install -g pnpm
+          echo "PNPM path: $(npm bin -g)"
+        shell: bash
+
+      - name: Add pnpm to PATH
+        run: echo "$(npm bin -g)" >> $GITHUB_PATH
+        shell: bash
 
       - name: Make scripts executable
         run: chmod +x deliverables/lab02/lab2.sh
