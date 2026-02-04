@@ -1,8 +1,39 @@
 name: CI Pipeline
 on: [push]
 jobs:
-  hello:
+  ci:
     runs-on: ubuntu-latest
     steps:
-      - name: Hello World
-        run: echo "Hello pipelines' world !"
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Make scripts executable
+        run: chmod +x deliverables/lab02/lab2.sh
+
+      - name: Run CI script
+        run: ./deliverables/lab02/lab2.sh
+
+      - name: Archive Nuxt build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuxt-output
+          path: .output
+
+      - name: Test Nuxt preview (package check)
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm nuxt preview &
+          sleep 10
+          curl -f http://localhost:3000 || (echo 'Nuxt preview failed' && exit 1)
+        env:
+          NUXT_PORT: 3000
+        continue-on-error: false
