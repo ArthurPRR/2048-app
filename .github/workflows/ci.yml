@@ -4,6 +4,12 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
+      - name: Debug pnpm and PATH
+        run: |
+          which pnpm || echo 'pnpm not found'
+          echo $PATH
+          pnpm --version || echo 'pnpm version not available'
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -11,13 +17,29 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
-
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 8
+          run_install: false
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Debug pnpm and PATH
+        run: |
+          which pnpm || echo 'pnpm not found'
+          echo $PATH
+          pnpm --version || echo 'pnpm version not available'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Make scripts executable
         run: chmod +x deliverables/lab02/lab2.sh
@@ -33,7 +55,6 @@ jobs:
 
       - name: Test Nuxt preview (package check)
         run: |
-          pnpm install --frozen-lockfile
           pnpm nuxt preview &
           sleep 10
           curl -f http://localhost:3000 || (echo 'Nuxt preview failed' && exit 1)
