@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useGameControls, useGameState } from '#imports'
+
 const { grid } = useGameState()
 const { handleTouchStart, handleTouchEnd } = useGameControls()
 </script>

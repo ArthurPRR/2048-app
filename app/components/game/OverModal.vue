@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useGameState } from '#imports'
+
 const { isGameOver, isWon, resetGame } = useGameState()
 
 const title = computed(() => isWon.value ? '🎉 You Win!' : '😢 Game Over')

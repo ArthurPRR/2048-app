@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useGameControls, useGameState } from '#imports'
+
 const { resetGame, loadBestScore } = useGameState()
 const { initControls, destroyControls } = useGameControls()
 
