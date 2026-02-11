@@ -27,4 +27,4 @@ Utilisation intelligente de Copilot
 Création d'instructions personnalisées dans .github/instructions/{name}.instructions.md
 Possibilité de spécifier quand appliquer les instructions avec applyTo.
 
-Création de prompt réutilisables dans .github/prompts/{name}.prompts.md
+Création de prompts réutilisables dans .github/prompts/{name}.prompts.md

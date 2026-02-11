@@ -1,0 +1,47 @@
+name: CI Pipeline
+on: [push]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4.0.2
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm@10.28.2
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm tsc --noEmit
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build package
+        run: pnpm build
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4.3.1
+        with:
+          name: build
+          path: dist/
+
+      - name: Test built package (preview)
+        run: |
+          pnpm start &
+          sleep 10
+          curl -f http://localhost:3000 || (echo 'App preview failed' && exit 1)
+        env:
+          PORT: 3000
+        continue-on-error: false
