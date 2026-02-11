@@ -1,3 +1,5 @@
+01 notes
+
 Plan
 Itération avec MCP server
 Chrome Dev Tools MCP
@@ -25,6 +27,7 @@ Important de connaître les dépendances et pouvoir les mettre à jour -> Gestio
 
 dependencies / devDependencies (avec -D : local)
 
+02-notes
 
 merge / pull request -> branche à durée de vie courte (3 jours) pour implémenter une fonctionnalité, vérification, revue de code à l'intégration
 Conserver une base stable (livrable à n'importe quel moment), fonctionnelle et cohérente (standards de code, compil, tests)
@@ -48,22 +51,3 @@ Si problème d'ordi : dans github : codespace -> environnement à distance perso
 
 Notion de remotes : dépôts distants centralisés, pull effectué sur un remote (par défaut origin) -> possibilité d'avoir plusieurs versions sur des remotes différents
 Par habitude upstream, dépôt de base du fork
-
-Slidev : faire des slides avec Markdown
-
-Quelques plateformes CI / CD :
-- Open Source : Jenkins (très populaire), GitLab (Open Core)
-- Closed Source : Azur Pipelines, GitHub Actions (Microsoft)
-
-Open Core : code open source sauf fonctionnalités premium
-
-Avantage pipeline : Sécuriser (gestion des secrets), Indépendance (environnement de build), Tracabilité, Versionnement, Hook/Triggers (build, tests, agent IA lors de la création d'une issue ...), Gestion des artifacts (package, rapports de tests, de vulnérabilités ...)
-
-Similitudes des plateformes :
-- Triggers
-- Agents d'exécution (exécute le code de la pipeline, parallélise, choix d'agents)
-- Découpage en stages (grosses étapes souvent liées à l'environnement), jobs (ex : test sur Android ou sur IOS), steps (étapes d'un job sur une task ou un script)
-- Artifacts (Représentent un fichier, consommables, publiables, versionnables)
-- Séparation en sous scripts
-- Demande d'approbation
-- Feeds / Flux
