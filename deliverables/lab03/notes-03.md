@@ -28,3 +28,5 @@ Création d'instructions personnalisées dans .github/instructions/{name}.instru
 Possibilité de spécifier quand appliquer les instructions avec applyTo.
 
 Création de prompts réutilisables dans .github/prompts/{name}.prompts.md
+
+crontab.guru (site pour gérer les dates/horaires)
