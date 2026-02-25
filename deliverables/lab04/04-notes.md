@@ -1,0 +1,1 @@
+Utilisation du cache pour exécuter la pipeline plus rapidement
