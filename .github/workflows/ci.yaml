@@ -10,6 +10,21 @@ on:
     paths-ignore:
       - 'docs/**'
   workflow_dispatch:
+    inputs:
+      static:
+        description: 'static build'
+        type: boolean
+        required: true
+        default: true
+      Environnement:
+        description: 'Node environment'
+        type: choice
+        required: true
+        default: PROD
+        options:
+          - QA
+          - PROD
+
 
 env:
   NODE_VERSION: 22
@@ -31,14 +46,14 @@ jobs:
       - name: Build
         run: pnpm build
       - name: Upload build artifact
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.inputs.static == 'true'
         uses: actions/upload-artifact@v6
         with:
           name: 2048-app-build
           path: .output/
           retention-days: 7
       - name: Upload build artifact for non-main branches
-        if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref != 'refs/heads/main' && github.event.inputs.static == 'true'
         uses: actions/upload-artifact@v6
         with:
           name: 2048-app-build
@@ -92,3 +107,13 @@ jobs:
           cache-dependency-path: pnpm-lock.yaml
       - run: pnpm install
       - run: pnpm test
+  
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - name: Simulate deployment
+        env:
+          ENVIRONMENT: ${{ github.event.inputs.Environnement }}
+        run: echo "Deploying to $ENVIRONMENT"
