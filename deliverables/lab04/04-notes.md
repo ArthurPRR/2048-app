@@ -13,3 +13,7 @@ Conditions avec if: (dans rules: pour Gitlab CI) peuvent être utilisés sur les
 Triggers pour déclencher une pipeline : manuel, planifié (à une heure donnée...), lié à l'activité d'une branche, lié à une Pull Request, via l'achèvement d'une autre pipeline, via un appel API
 
 Les actions préfixées par actions/ sont faites par Github
+
+Ne push que certains commits : git push {hash de commit}:{branch}
+Pour forcer le push après un rebase : git push --force-with-lease
+Pour les autres, git reset {branch}
