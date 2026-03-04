@@ -12,3 +12,4 @@ Conditions avec if: (dans rules: pour Gitlab CI) peuvent être utilisés sur les
 
 Triggers pour déclencher une pipeline : manuel, planifié (à une heure donnée...), lié à l'activité d'une branche, lié à une Pull Request, via l'achèvement d'une autre pipeline, via un appel API
 
+Les actions préfixées par actions/ sont faites par Github
