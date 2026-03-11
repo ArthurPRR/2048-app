@@ -17,3 +17,10 @@ Les actions préfixées par actions/ sont faites par Github
 Ne push que certains commits : git push {hash de commit}:{branch}
 Pour forcer le push après un rebase : git push --force-with-lease
 Pour les autres, git reset {branch}
+
+
+Notre job futur sera peut-être de manager des agents IA, les bases sont fondamentales
+Squad : Un des outils qui permettent d'avoir une team d'agents IA
+
+Extensions activables uniquement sur certains dossiers avec "enable (workspace)"
+Possibilités d'avoir des profils avec des paramètres et extensions prédéfinis
