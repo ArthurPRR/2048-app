@@ -56,6 +56,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Pull Vercel project settings   # ← ADD THIS
+        run: pnpm dlx vercel@latest pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
       - name: Build with Vercel
         run: pnpm dlx vercel@latest build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
