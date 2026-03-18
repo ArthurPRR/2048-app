@@ -24,3 +24,9 @@ Squad : Un des outils qui permettent d'avoir une team d'agents IA
 
 Extensions activables uniquement sur certains dossiers avec "enable (workspace)"
 Possibilités d'avoir des profils avec des paramètres et extensions prédéfinis
+
+différence github Actions / gitlab :
+github action est plus orienté actions réutilisable et intégration
+gitlab est plus orienté pipeline globale.
+Gitlab demande plus de code pour une logique équivalente mais laisse plus de contrôle 
+logique de stage dans gitlab
