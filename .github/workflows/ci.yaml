@@ -35,13 +35,6 @@ jobs:
       - name: Build application
         run: pnpm build
 
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: 2048-app-output
-          path: .output/public
-          retention-days: 1
-
   deploy-production:
     runs-on: ubuntu-latest
     needs: build
@@ -60,11 +53,11 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: pnpm
 
-      - name: Download prebuilt artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: 2048-app-output
-          path: .output/public
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build with Vercel
+        run: pnpm dlx vercel@latest build --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Deploy production to Vercel
-        run: pnpm dlx vercel@latest deploy .output/public --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: pnpm dlx vercel@latest deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
