@@ -67,4 +67,4 @@ jobs:
           path: .output/public
 
       - name: Deploy production to Vercel
-        run: pnpm dlx vercel@latest deploy .output/public --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: pnpm dlx vercel@latest deploy .output/public --prod --skip-build --token=${{ secrets.VERCEL_TOKEN }}
