@@ -1,0 +1,10 @@
+name: 2048-lab7
+description: Pulumi Test 2048
+runtime:
+  name: nodejs
+  options:
+    packagemanager: pnpm
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: azure-typescript
